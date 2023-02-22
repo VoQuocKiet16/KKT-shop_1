@@ -69,4 +69,15 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    //DELETE CATEGORY
+        /**
+     * @Route("/delete/{id}",name="category_delete",requirements={"id"="\d+"})
+     */
+    
+     public function deleteAction(Request $request, Category $c): Response
+     {
+         $this->repo->remove($c,true);
+         return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
+     }
+
 }
