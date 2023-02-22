@@ -48,4 +48,25 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    //EDIT Category
+    /**
+     * @Route("/editcate/{id}", name="category_edit", requirements={"id"="\d+"})
+     */
+    public function editCategoryAction(CategoryRepository $repo, Request $req, Category $cate): Response
+    {
+        $form = $this->createForm(CategoryType::class, $cate);
+
+        $form->handleRequest($req);
+        if($form->isSubmitted()&&$form->isValid()){
+            $repo->add($cate, true);
+            // return new Response('Edited id = '.$cate->getId());
+            return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
+            
+        }
+        return $this->render('category/form.html.twig',[
+            'form'=>$form->createView(),
+       
+        ]);
+    }
+
 }
