@@ -39,28 +39,38 @@ class CartRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Cart[] Returns an array of Cart objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Cart[] Returns an array of Cart objects
+    */
+   public function cart($value): array
+   {
+       return $this->createQueryBuilder('c')
+       ->select('c.id, p.namep, c.quantity, p.pricep, c.quantity*p.pricep as total ')
+           ->andWhere('c.user = :val')
+           ->setParameter('val', $value)
+           ->orderBy('c.id', 'ASC')
+           ->innerJoin('c.product', 'p')
+           ->getQuery()
+           ->getArrayResult()
+       ;
+   }
 
-//    public function findOneBySomeField($value): ?Cart
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+
+   /**
+    * @return Cart[] Returns an array of Cart objects
+    */
+    public function findcart($value): array
+    {
+        return $this->createQueryBuilder('c')
+        ->select('p.id, c.quantity ')
+        ->innerJoin('c.product', 'p')
+        ->innerJoin('c.user', 'u')
+            ->andWhere('u.id = :val')
+            ->setParameter('val', $value)
+            ->orderBy('c.id', 'ASC')
+           
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
 }
