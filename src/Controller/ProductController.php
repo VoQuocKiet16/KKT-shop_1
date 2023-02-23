@@ -119,24 +119,26 @@ class ProductController extends AbstractController
          /**
      * @Route("/showpr", name="app_showall")
      */
-    public function showallProduct(ProductRepository $repo, Request $req): Response
+    public function showallProduct(ProductRepository $repo, CategoryRepository $repo1, Request $req): Response
     {
+        $br = $repo1->findAll();
         $products = $repo->findAll();
         return $this->render('product/show.html.twig', [
-            'products' => $products
+            'products' => $products,
+            'brand' => $br
         ]);
     }
 
     /**
      * @Route("/{id}", name="product_detail",requirements={"id"="\d+"})
      */
-    public function showAction(Product $p, CategoryRepository $repo, $id): Response
+    public function showAction(Product $p, CategoryRepository $repo1, $id): Response
     {
-        // $p = $repo->findbrand($id);
+        $br = $repo1->findAll($id);
         // $br = $repo->findAll();
         return $this->render('product/detail.html.twig', [
             'p' => $p,
-            // 'brand' => $br
+            'brand' => $br
         ]);
     }
 

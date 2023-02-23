@@ -39,6 +39,20 @@ class CategoryRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Category[] Returns an array of Category objects
+     */
+    public function findbrand($value): array
+    {
+        return $this->createQueryBuilder('s')
+            ->select("p.id, p.namep , p.pricep, p.image, p.description")
+            ->innerJoin('s.categoryy', 'p')
+            ->andWhere('s.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Category[] Returns an array of Category objects
 //     */

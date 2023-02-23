@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -82,4 +83,18 @@ class CategoryController extends AbstractController
          return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
      }
 
+        //USER
+         /**
+         * @Route("/brand/{id}", name="app_brand")
+         */
+    public function showbrand(CategoryRepository $repo, $id, Category $category): Response
+    {   
+        $br= $repo->findAll();
+        $p= $repo->findbrand($id);
+        return $this->render('brand/index.html.twig', [
+            'pro'=> $p,
+            'brand'=>$br
+        ]);
+    }
+            
 }
