@@ -35,9 +35,9 @@
             <span class="visually-hidden">(current)</span>
           </a>
         </li>
-        {# <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="{{ path('app_showall')}}">Product</a>
-        </li> #}
+        </li>
         {# <li class="nav-item">
           <a class="nav-link" href="{{ path('app_bill')}}">Receipt</a>
         </li> #}
@@ -71,20 +71,20 @@
       </ul>
         <div class="mx-2">
         {% if app.user %}
-        {# <div class="list-inline-item">
-            <a class="nav-link">Wellcome {{ app.user.name }},</a> #}
+        <div class="list-inline-item">
+            <a class="nav-link">Wellcome {{ app.user.name }},</a>
             {# {{ app.user.userIdentifier }} #}
-        {# </div>
+        </div>
         <div class="list-inline-item" >
          <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-         </div> #}
+         </div>
         {%  else %}
-        {# <li class="list-inline-item" >
+        <li class="list-inline-item" >
             <a class="nav-link"href="{{path('app_login')}}">Login</a>
           </li>
           <li class="list-inline-item">
             <a class="nav-link" href="{{path('app_register')}}">Registration</a>
-          </li> #}
+          </li>
       {% endif %}
 
     </div>
