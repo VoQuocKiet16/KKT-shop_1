@@ -75,7 +75,7 @@
         <div class="mx-2">
         {% if app.user %}
         <li class="list-inline-item">
-          <a class="nav-link" href=""><i class="fa-solid fa-cart-shopping"></i></a>
+          <a class="nav-link" href="{{ path('cart') }}"><i class="fa-solid fa-cart-shopping"></i></a>
         </li>
         <div class="list-inline-item">
             <a class="nav-link">Wellcome {{ app.user.name }},</a>
