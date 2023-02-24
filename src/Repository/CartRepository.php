@@ -45,7 +45,7 @@ class CartRepository extends ServiceEntityRepository
    public function cart($value): array
    {
        return $this->createQueryBuilder('c')
-       ->select('c.id, p.namep, c.quantity, p.pricep, c.quantity*p.pricep as total ')
+       ->select('c.id, p.namep, c.quantity, p.pricep, p.image, c.quantity*p.pricep as total ')
            ->andWhere('c.user = :val')
            ->setParameter('val', $value)
            ->innerJoin('c.product', 'p')
@@ -61,19 +61,18 @@ class CartRepository extends ServiceEntityRepository
     public function findcart($value): array
     {
         return $this->createQueryBuilder('c')
-        ->select('p.id, c.quantity ')
+        ->select('p.id, c.quantity,  p.image, p.pricep*c.quantity as total')
         ->innerJoin('c.product', 'p')
         ->innerJoin('c.user', 'u')
             ->andWhere('u.id = :val')
             ->setParameter('val', $value)
             ->orderBy('c.id', 'ASC')
-           
             ->getQuery()
             ->getArrayResult()
         ;
     }
 
-       /**
+    /**
     * @return Cart[] Returns an array of Cart objects
     */
    public function finduserid($value): array
@@ -86,4 +85,5 @@ class CartRepository extends ServiceEntityRepository
            ->getArrayResult()
        ;
    }
+
 }

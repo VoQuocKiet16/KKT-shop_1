@@ -51,14 +51,11 @@
         {# {% block stylesheets %} #}
             <link rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.css">
         {# {% endblock %} #}
-{# 
+        {# 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %} #}
     </head>
-
-
-
 
 <style>
 .btn-signin{
@@ -114,6 +111,7 @@
                         </button>
                   </div>
                 </form>
+                <h6 class="mb-20" style="text-align:content"><a href="{{path('app_register')}}" class="text-body">Sign up for an account here</a></h6> 
           </div>
         </div>
       </div>

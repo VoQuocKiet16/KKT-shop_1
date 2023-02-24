@@ -135,7 +135,7 @@ class CartController extends AbstractController
         $order->add($order1, true);
         
         // insert to orderdetail
-        $oid = $orderdetail->orderdetail($id)[0]['oid'];
+        $oid = $order->orderdetail($id)[0]['oid'];
         $orderobject =$order->find($oid);
         $date =$order->date($oid);
 

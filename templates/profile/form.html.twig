@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+.h1{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.card{
+    margin-bottom: 50px;
+}
+</style>
+<div className="page-heading pb-2 mt-4 mb-2 ">
+    </div>
+    <h1 class="h1">My Profile</h1>
+    <div class="page-content mt-4">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-body">
+                    <form>   
+                    {{ form_start(form) }}
+                        <div class="form-body">
+                            <div class="row">
+                             <div class="col-12">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="first-name-vertical">Email User</label>
+                                        {{ form_widget(form.email) }}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="contact-info-vertical">Name User</label>
+                                        {{ form_widget(form.name) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-info-vertical">Phone User</label>
+                                    {{ form_widget(form.phone) }}
+                                </div>
+                                 <div class="form-group">
+                                    <label for="contact-info-vertical"><Address></Address>Address User</label>
+                                    {{ form_widget(form.address) }}
+                                </div>
+                                <div class="col-12 d-flex justify-content-end pt-2">
+                                    {{ form_widget(form.save) }}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    {{ form_end(form) }}
+                </div> <!--card body-->
+            </div> <!--card content-->
+        </div> <!--card-->
+    </div><!--page content-->
+{% endblock %}

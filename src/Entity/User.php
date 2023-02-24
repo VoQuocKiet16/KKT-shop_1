@@ -43,11 +43,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $name;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $birthday;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $phone;
@@ -174,17 +169,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getBirthday(): ?\DateTimeInterface
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(\DateTimeInterface $birthday): self
-    {
-        $this->birthday = $birthday;
-
-        return $this;
-    }
 
     public function getPhone(): ?string
     {
