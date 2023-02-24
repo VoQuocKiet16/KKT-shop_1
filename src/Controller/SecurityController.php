@@ -2,29 +2,21 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
-{   /**
-    * @Route("/security", name="app_security")
-    */
-    // #[Route('/security', name: 'app_security')]
-    public function index(): Response
-    {
-        return $this->render('security/index.html.twig', [
-            'controller_name' => 'SecurityController',
-        ]);
-    }
-
+{  
     /**
     * @Route("/", name="app_login")
     */
-    // #[Route(path: '/', name: 'app_login')]
+
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        // $br = $brand->findAll();
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
@@ -34,7 +26,9 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error
+        // , 'brand' => $br
+    ]);
     }
 
     /**

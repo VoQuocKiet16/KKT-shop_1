@@ -53,22 +53,22 @@ class OrderRepository extends ServiceEntityRepository
        ;
    }
 
-      /**
-    * @return Order[] Returns an array of Order objects
-    */
-   public function findByUser($value): array
-   {
-       return $this->createQueryBuilder('o')
-       ->select('o.name')
-           ->andWhere('o.userorder = :val')
-           ->setParameter('val', $value)
-           ->innerJoin('o.user', 'u')
-        //    ->orderBy('o.id', 'ASC')
-        //    ->setMaxResults(10)
-           ->getQuery()
-           ->getResult()
-       ;
-   }
+//       /**
+//     * @return Order[] Returns an array of Order objects
+//     */
+//    public function findByUser($value): array
+//    {
+//        return $this->createQueryBuilder('o')
+//        ->select('o.name')
+//            ->andWhere('o.userorder = :val')
+//            ->setParameter('val', $value)
+//            ->innerJoin('o.user', 'u')
+//         //    ->orderBy('o.id', 'ASC')
+//         //    ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
 
 
 
