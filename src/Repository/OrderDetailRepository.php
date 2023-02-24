@@ -42,13 +42,14 @@ class OrderDetailRepository extends ServiceEntityRepository
 //    /**
 //     * @return OrderDetail[] Returns an array of OrderDetail objects
 //     */
-//    public function findByExampleField($value): array
+//    public function findorderdetail($value): array
 //    {
 //        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
+//            ->select('pro.namep, pro.pricep, o.quantity, pro.pricep*o.quantity as total')
+//            ->innerJoin('o.pid', 'pro')
+//            ->innerJoin('o.pid', 'ord')
+//            ->andWhere('o.oid= :id')
+//            ->setParameter('id', $value)
 //            ->getQuery()
 //            ->getResult()
 //        ;
@@ -63,4 +64,19 @@ class OrderDetailRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+            /**
+        * @return OrderDetail[] Returns an array of OrderDetail objects
+        */
+        public function productdetail($value): array
+        {
+            return $this->createQueryBuilder('o')
+                ->select('p.namep, p.pricep, o.quantity, p.pricep*o.quantity as total')
+                ->innerJoin('o.product', 'p')
+                ->andWhere('o.product= :val')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getResult()
+            ;
+        }
 }

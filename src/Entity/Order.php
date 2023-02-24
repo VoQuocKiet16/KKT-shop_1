@@ -44,7 +44,7 @@ class Order
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
-    }
+    }   
 
     public function getId(): ?int
     {
