@@ -184,7 +184,7 @@ class CartController extends AbstractController
         
         $BR = $brand->findAll();        
         $user = $this->getUser();
-    $data[]=[
+        $data[]=[
             'id'=>$user->getId()
         ];
         $id = $data[0]['id'];

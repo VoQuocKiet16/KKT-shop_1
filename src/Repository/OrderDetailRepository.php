@@ -79,4 +79,35 @@ class OrderDetailRepository extends ServiceEntityRepository
                 ->getResult()
             ;
         }
+        // /**
+        // * @return OrderDetail[] Returns an array of OrderDetail objects
+        // */
+        // public function abc($value): array
+        // {
+            
+        //     $con = $this->getEntityManager()->getConnection();
+        //     $sql='SELECT * FROM order_detail
+        //     INNER JOIN `order` o on o.id = `order_detail`.orderid_id
+        //     INNER JOIN product p on p.id = order_detail.product_id
+        //     WHERE o.id = :id';
+        //     $re = $con->executeQuery($sql, ['id'=>$value]);
+        //     return $re->fetchAllAssociative();
+        // }
+
+         /**
+            * @return OrderDetail[] Returns an array of OrderDetail objects
+            */
+            public function abc($value): array
+            {
+                return $this->createQueryBuilder('od')
+                ->select('od.id, p.namep, p.pricep, od.quantity, o.total, o.datecreate')
+                ->innerJoin('od.product', 'p')
+                ->innerJoin('od.orderid', 'o')
+                ->andWhere('o.userorder = :val')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getResult()
+            ;
+                
+            }
 }

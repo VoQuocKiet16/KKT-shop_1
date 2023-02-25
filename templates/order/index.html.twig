@@ -3,8 +3,14 @@
 {% block title %}Hello OrderController!{% endblock %}
 
 {% block body %}
+<style>
+.h1{
+    text-align: center;
+    margin-top: 100px;
+}
+</style>
   <div className="page-heading pb-2 mt-4 mb-2 ">
-                <h1>My Receipt</h1>
+                <h1 class="h1">My Receipt</h1>
                 </div>
                 <div class="page-content">
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -17,17 +23,20 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Total</th>
+                            <th>Product Name</th>
+                            <th>Product Price</th>
+                            <th>Quantity</th>
                             <th>Date</th>
                           </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                          {% for o in order %}
+                          {% for o in od %}
                               <tr>
                                   <td>{{ o.id}}</td>
-                                  <td>{{ o.total}}</td>
+                                  <td>{{o.namep}}</td>
+                                  <td>{{o.pricep}}</td>
+                                  <td>{{o.quantity}}</td>
                                   <td>{{ o.datecreate|date('d/m/y')}}</td>
-                                  <td>
                               </tr>
                           {% endfor %}
                         </tbody>
