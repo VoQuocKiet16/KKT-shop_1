@@ -7,6 +7,7 @@ use App\Repository\OrderDetailRepository;
 use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -29,6 +30,25 @@ class OrderController extends AbstractController
                 'order' => $order,
                 'brand' => $br,
                 'od' => $od,
+            ]);
+        }
+
+
+         /**
+         * @Route("/receipt", name="app_receipt")
+         */
+        public function manageReceipt(OrderRepository $order, OrderDetailRepository $repo, UserRepository $user, Request $req): Response
+        {
+
+            // $userinfo = $user->findAll();
+            // $oid = $order->findorderid()
+            $odt = $repo->managerReceipt('id');
+        
+            // $od = $repo->managerReceipt();
+            // $od = $repo1->managerReceipt($value);
+            return $this->render('order/receipt.html.twig', [
+                // 'order' => $order,
+                'odt' => $odt,
             ]);
         }
 }

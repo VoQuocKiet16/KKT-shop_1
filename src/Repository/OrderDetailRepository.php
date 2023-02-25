@@ -110,4 +110,35 @@ class OrderDetailRepository extends ServiceEntityRepository
             ;
                 
             }
+
+            /**
+            * @return OrderDetail[] Returns an array of OrderDetail objects
+            */
+            public function managerReceipt(): array
+            {
+                return $this->createQueryBuilder('od')
+                ->select('o.id,  p.namep, p.pricep, od.quantity, o.total')
+                ->innerJoin('od.product', 'p')
+                ->innerJoin('od.orderid', 'o')
+                // ->andWhere('o.id = :val')
+                // ->setParameter('val', $value)
+                ->getQuery()
+                ->getResult()
+            ;
+            }
+
+            // /**
+            // * @return OrderDetail[] Returns an array of OrderDetail objects
+            // */
+            // public function managerReceipt($id): array
+            // {
+            //     return $this->createQueryBuilder('od')
+            //     ->select('o.id')
+            //     ->andWhere('od.id = :val')
+            //     ->setParameter('val', $id)
+            //     ->getQuery()
+            //     ->getResult()
+            //     ;
+            // }
+
 }

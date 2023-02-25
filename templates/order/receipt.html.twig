@@ -1,16 +1,10 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Hello OrderController!{% endblock %}
+{% extends 'admin.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
 
 {% block body %}
-<style>
-.h1{
-    text-align: center;
-    margin-top: 100px;
-}
-</style>
   <div className="page-heading pb-2 mt-4 mb-2 ">
-                <h1 class="h1">My Receipt</h1>
                 </div>
                 <div class="page-content">
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -22,27 +16,31 @@
                       <table class="table table-striped">
                         <thead>
                           <tr>
-                            <th>#</th>
-                            <th>Product Name</th>
-                            <th>Product Price</th>
-                            <th>Quantity</th>
-                            <th>Date</th>
+                        
+                             <th>Order ID</th>
+                            <th>Name Product</th>
+                            <th>Price Product</th>
+                             <th>Quantity</th>
                           </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">
-                          {% for o in od %}
+                          {% for o in odt %}
                               <tr>
-                                  <td>{{ o.id}}</td>
-                                  <td>{{o.namep}}</td>
-                                  <td>${{o.pricep}}</td>
-                                  <td>{{o.quantity}}</td>
-                                  <td>{{ o.datecreate|date('d/m/y')}}</td>
+                                <td>{{ o.id}}</td>
+                                 {# <td>{{ o.orderid}}</td> #}
+                                <td>{{ o.namep}}</td>
+                                <td>${{ o.pricep}}</td>
+                                <td>{{ o.quantity}}</td>
                               </tr>
-                          {% endfor %}
+                                 <tr>
+                                  {# <td>{{ o.namep}}</td> #}
+                              </tr>
+                          {% endfor %}          
                         </tbody>
                       </table>
                     </div>
                 </div>
                 </div>
                 </div>
-{% endblock %}
+                    
+                {% endblock %}

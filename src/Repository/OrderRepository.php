@@ -148,5 +148,17 @@ class OrderRepository extends ServiceEntityRepository
 
         }
 
+        
+        public function findorderid(): array
+        {
+            return $this->createQueryBuilder('o')
+            ->select('o.id')
+            ->orderBy('o.id', 'ASC')
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
+
 
 }
