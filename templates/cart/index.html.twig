@@ -49,8 +49,8 @@ background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 
                 <!-- Quantity -->
                 <div class="d-flex mb-4" style="max-width: 300px">
                   <div class="form-outline">
-				    <label class="form-label" for="form1">Quantity</label>
-                	<input id="form1" min="0" name="quantity" value="{{p.quantity}}" type="number" class="form-control" />
+				        <label class="form-label" for="form1">Quantity: {{p.quantity}}</label>
+                	{# <input id="form1" min="0" name="quantity" value="{{p.quantity}}" type="number" class="form-control" /> #}
                   </div>
                 </div>
 				<div class="d-flex mb-4" style="max-width: 300px">
@@ -104,12 +104,13 @@ background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 
               <li>
               </li>
             </ul>
-
-           <form action ="{{path('checkout')}}">
+      {% if total == 0 == false %}
+      <form action ="{{path('checkout')}}">
 					<input type="submit" value="Check out" name="btnBuy" class ="btn btn-primary" >
 					<div class="pt-5"> 
-				</div>
+				  </div>
 			</form>
+      {% endif %}
 			<h6 class="mb-20" style="text-align:right "><a href="{{path('app_home')}}" class="text-body">Back to shop</a></h6> 
           </div>
         </div>
