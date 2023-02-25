@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello OrderController!{% endblock %}
+
+{% block body %}
+  <div className="page-heading pb-2 mt-4 mb-2 ">
+                <h1>My Receipt</h1>
+                </div>
+                <div class="page-content">
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+               
+                </div>
+                <div class="card">
+                    <div class="container mb-3">
+                        <div class="table-responsive text-nowrap">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Total</th>
+                            <th>Date</th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                          {% for o in order %}
+                              <tr>
+                                  <td>{{ o.id}}</td>
+                                  <td>{{ o.total}}</td>
+                                  <td>{{ o.datecreate|date('d/m/y')}}</td>
+                                  <td>
+                              </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                </div>
+                </div>
+{% endblock %}

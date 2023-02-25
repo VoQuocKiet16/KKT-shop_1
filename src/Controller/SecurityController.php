@@ -19,9 +19,9 @@ class SecurityController extends AbstractController
     * @Route("/", name="app_login")
     */
 
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, CategoryRepository $brand): Response
     {
-        // $br = $brand->findAll();
+        $br = $brand->findAll();
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
@@ -31,8 +31,7 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error
-        // , 'brand' => $br
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error, 'brand' => $br
     ]);
     }
 
@@ -62,8 +61,9 @@ class SecurityController extends AbstractController
     /**
      * @Route("/profile", name="app_profile")
      */
-    public function Profile(UserRepository $upUser, Request $req): Response
+    public function Profile(UserRepository $upUser, Request $req, CategoryRepository $brand): Response
     {
+        $br = $brand->findAll();
         $u = $this->getUser();
         $form = $this->createForm(EditProfileType::class, $u);
 
@@ -80,6 +80,7 @@ class SecurityController extends AbstractController
         // $user = $upUser->findByProfile($id);
         return $this->render('profile/form.html.twig', [
             'form' => $form->createView(),
+            'brand' => $br,
             // 'user' => $user
         ]);
     }

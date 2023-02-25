@@ -1,59 +1,4 @@
-{# {% extends 'base.html.twig' %}
 
-
-{% block body %}
-
-{% block stylesheets %}
-        <link rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.css">
-{% endblock %} #}
-	{# <article>
-	<h1>Succesful<h1>
-	<hr>
-	{% for d in date%}
-		<p>Date: {{d.datecreate|date('d/m/y H:i')}}<p>
-	{% endfor %}
-	<p>Code order: {{oid}}</p>
-	<div class="infoe bg-black">
-	{% for u in userinfo %}
-	<p>Customer's name: {{u.name}}</p>
-	<p>Customer's phone: {{u.phone}}</p>
-	<p>Customer's address: {{u.address}}</p>
-	{% endfor %}
-
-	</div>
-
-	<hr>
-	<div class="bill">
-		<table class="table">
-		<tr>
-		<th>Product Name</th>
-		<th>Quantity</th>
-		<th>Price</th>
-		</tr>
-	{% for p in productdetail %}
-	<tr>
-
-	<td>{{p.namep}}</td>
-	<td input id="form1" min="0" name="quantity" value="{{p.quantity}}" type="number" class="form-control form-control"></td> #}
-	{# <td><h6 class="mb-0"><span>${{sum(p.quantity,p.price)}}</span><h6></td> #}
-	{# </tr>
-	{% endfor %}
-
-	<tr>
-	<td colspan="2">Total</td>
-	{% for t in total %}
-		<td>${{t.total}}</td>
-	{% endfor %}
-	
-	</tr>
-	</table>
-
-	
-	</div>
-	</article> #}
-	
-{# 	
-{% endblock %}  #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello BillController!{% endblock %}
@@ -64,6 +9,11 @@
 
 
 {% block body %}
+<style>
+.br{
+	margin-bottom: 100px;
+}
+</style>
 
 <div class="container bootstrap snippets bootdeys">
 <div class="row">
@@ -90,7 +40,7 @@
 			    <div class="col-xs-4 text-right payment-details">
 					<p class="lead marginbottom payment-info">Payment details</p>
 					{% for d in date%}
-					<p>Date: {{d.datecreate|date('d/m/y H:i')}}<p>
+					<p>Date: {{d.datecreate|date('d/m/y')}}<p>
 					{% endfor %}
 					<p>Payment methods: Pay on delivery</p>
 			    </div>
@@ -108,14 +58,15 @@
 					{% for p in productdetail %}
 						<tr>
 							<th style="width:50%">Product Name: {{p.namep}}</th>
-							<th class="text-right" style="width:15%">Quantity: {{p.pricep}}</th>
-							<th class="text-right" style="width:15%">Unit Price: ${{p.total}}</th>
+							<th style="width:50%">Quantity: {{p.quantity}}</th>
+							<th class="text-right" style="width:15%">Total Price: {{p.pricep}}</th>
+							{# <th class="text-right" style="width:15%">Unit Price: ${{p.total}}</th> #}
 							{# <th class="text-right" style="width:15%">Total Price: ${{total}}</th> #}
 						</tr>
 					{% endfor %}
-						{% for t in total %}
-							<td>Unit Price: ${{t.total}}</td>
-						{% endfor %}
+					{% for t in total %}
+						<td class="br">Unit Price: ${{t.total}}</td>
+					{% endfor %}
 			        {# </tr> #}
 			      </thead>
 			    </table>

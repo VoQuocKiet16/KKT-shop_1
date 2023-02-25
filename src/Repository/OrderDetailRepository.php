@@ -71,9 +71,9 @@ class OrderDetailRepository extends ServiceEntityRepository
         public function productdetail($value): array
         {
             return $this->createQueryBuilder('o')
-                ->select('p.namep, p.pricep, o.quantity, p.pricep*o.quantity as total')
+                ->select('p.namep, p.pricep, o.quantity')
                 ->innerJoin('o.product', 'p')
-                ->andWhere('o.product= :val')
+                ->andWhere('o.orderid = :val')
                 ->setParameter('val', $value)
                 ->getQuery()
                 ->getResult()

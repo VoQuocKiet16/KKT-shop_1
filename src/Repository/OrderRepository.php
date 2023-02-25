@@ -103,34 +103,51 @@ class OrderRepository extends ServiceEntityRepository
            ;
        }
 
-                 /**
+        /**
         * @return Order[] Returns an array of Order objects
         */
         public function date($value): array
         {
             return $this->createQueryBuilder('o')
                 ->select('o.datecreate')
-                // ->andWhere('o.orderuser= :val')
-                // ->setParameter('val', $value)
-                ->getQuery()
-                ->getResult()
-            ;
-        }
-
-           /**
-        * @return Order[] Returns an array of Order objects
-        */
-        public function productdetail($value): array
-        {
-            return $this->createQueryBuilder('o')
-                ->select('p.namep, p.pricep, o.quantity, p.pricep*o.quantity as total')
-                ->innerJoin('o.product', 'p')
-                ->andWhere('o.product= :val')
+                ->andWhere('o.id= :val')
                 ->setParameter('val', $value)
                 ->getQuery()
                 ->getResult()
             ;
         }
+                 /**
+        * @return Order[] Returns an array of Order objects
+        */
+        public function totalbill($value): array
+        {
+            return $this->createQueryBuilder('o')
+            ->select('o.total')
+            ->andWhere('o.userorder = :val')
+            ->setParameter('val', $value)
+            ->orderBy('o.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+
+        }
+
+
+          /**
+        * @return Order[] Returns an array of Order objects
+        */
+        public function totaldetail($value): array
+        {
+            return $this->createQueryBuilder('o')
+            ->select('o.Total')
+            ->andWhere('o.id = :val')
+            ->setParameter('val', $value)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+
+        }
+
 
 
 }

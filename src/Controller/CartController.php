@@ -165,8 +165,13 @@ class CartController extends AbstractController
         $productdetail = $orderdetail->productdetail($oid);
         
 
-        return $this->redirectToRoute('app_bill', [ 'brand' => $BR,'oid'=>$oid, 'total'=>$totalAll, 'userinfo'=>$userinfo,               'productdetail'=>$productdetail
-        ,'date'=>$date], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_bill', [ 
+            'brand' => $BR,
+            'oid'=>$oid, 
+            'total'=>$totalAll, 
+            'userinfo'=>$userinfo,        
+            'productdetail'=>$productdetail,
+            'date'=>$date], Response::HTTP_SEE_OTHER);
      }
 
 
@@ -187,13 +192,14 @@ class CartController extends AbstractController
         $userinfo = $order->userinfo($id);
         $productdetail = $orderdetail->productdetail($oid);
         $product = $repo->cart($id);
-        $totalAll = 0;
-        foreach ($product as $p) {
-            $totalAll += $p['total'];
-        }
+        $totalAll = $order->totalbill($id);
         $date =$order->date($oid);
          return $this->render('bill/bill.html.twig', [
-            'brand' => $BR,'oid'=>$oid, 'total'=>$totalAll, 'userinfo'=>$userinfo,'productdetail'=>$productdetail
+            'brand' => $BR,
+            'oid'=>$oid, 
+            'total'=>$totalAll, 
+            'userinfo'=>$userinfo,
+            'productdetail'=>$productdetail
             ,'date'=>$date
          ]);
      }
