@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,11 +27,13 @@ class RegistrationController extends AbstractController
      * @Route("/register", name="app_register")
      */
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface, 
-    EntityManagerInterface $entityManager): Response
+    EntityManagerInterface $entityManager, CategoryRepository $brand): Response
     {
+        
         $user=new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
+        $br = $brand->findAll();
 
         if($form->isSubmitted()&& $form->isValid()){
             //encodde the plain password
@@ -52,6 +55,7 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/index.html.twig', [
             'registrationForm' =>$form->createView(),
+            'brand'=>$br,
         ]);
     }
     

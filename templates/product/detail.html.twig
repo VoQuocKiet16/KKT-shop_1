@@ -15,9 +15,13 @@
 			color: black;
 		}
 
-    .btn-cart{
-      margin-top: 50px;
-    }
+		.btn-cart{
+		margin-top: 50px;
+		color: black;
+		}
+		.cart{
+			text-decoration: none;
+		}
 	</style>
 <section class="h-100 h-custom">
 <div class="container py-5 h-100">
@@ -43,32 +47,25 @@
 									$
 									{{p.pricep}}</div>
 								<div>
-									{# <span class="product_info">In Stock: {{p.quantity}}<span> </div> #}
 									<hr class="singleline">
 									<div class="order_info d-flex flex-row">
 									{% set proid = p.id %}
 										<form action="/addcart/{{proid}}">
 										</div>
 										<div class="row">
-											{# <form action="#" method="get">
-												<div class="col-lg-3 mb-4" style="margin-left: 13px;"> #}
-													{# <div class="form-group">
-														<label for="qty_label">Quantity:</label>
-														<input type="number" id="quantity_input" class="form-control" name="quantity_input" value="1">
-													</div> #}
-												{# </div> #}
-												
-												{# <form action=""> #}
 													<p class="text-black" >Quantity</p>
 													<input type="number" name="quantity" id="inputQuantity" value="1" min="1" max="90" class="form-control" required>
+													{% if app.user %}
 													<div class="col-lg-9">
 														<button type="submit" class="btn btn-success shop-button btn-cart" styles="width:120px">Add to cart</button>
 													</div>
-												{# </form> #}
-												{# <div class="col-lg-9">
-													<button type="submit" class="btn btn-primary shop-button">Add to Cart</button>
-													<!-- <button type="button" class="btn btn-success shop-button">Buy Now</button> -->
-												</div> #}
+													{%  else %}
+													  <div class="col-lg-9">
+														<button class="btn btn-success shop-button btn-cart  ">
+														<a href="{{path('app_login')}}" class="text-black cart">Add to cart</a>
+														</button>
+													 </div>
+													{% endif %}
 											</form>
 										</div>
 									</div>
