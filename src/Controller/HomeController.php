@@ -23,6 +23,8 @@ class HomeController extends AbstractController
         ]);
     }
 
+    
+
 
 
     //search controller
